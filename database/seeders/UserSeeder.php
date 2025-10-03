@@ -33,5 +33,7 @@ class UserSeeder extends Seeder
             'password' => 'user2@dev.com',
             'is_admin' => User::NOT_ADMIN
         ]);
+
+        User::factory()->count(50)->create();
     }
 }

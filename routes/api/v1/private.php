@@ -12,6 +12,7 @@ Route::controller(AuthenticationController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/users', 'users')->name('users');
+    Route::get('/admins', 'admins')->name('admins');
 });
 
 
