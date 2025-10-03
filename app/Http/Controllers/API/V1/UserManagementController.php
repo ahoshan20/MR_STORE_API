@@ -49,4 +49,18 @@ class UserManagementController extends Controller
             return sendResponse(false, 'Something went wrong.', null, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    public function user(Request $request)
+    {
+        try {
+            $user = $request->user();
+            if ($user->is_admin == User::NOT_ADMIN) {
+                return response()->json(["message" => "Unauthorized access."], Response::HTTP_FORBIDDEN);
+            }
+            $users = User::where('is_admin', false)->paginate(10);
+            return sendResponse(true, 'Users retrieved successfully.', new UserCollection($users), Response::HTTP_OK);
+        } catch (Throwable $e) {
+            Log::error('Get Users Error: ' . $e->getMessage());
+            return sendResponse(false, 'Something went wrong.', null, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }

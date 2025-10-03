@@ -19,11 +19,16 @@ class VerifiedUserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $user = request()->user();
-
         if (!$user) {
+            if (!$request->expectsJson()) {
+                return redirect()->route('home')->with('error', 'Unauthorized');
+            }
             return sendResponse(false, 'Unauthorized', null, Response::HTTP_UNAUTHORIZED);
         }
         if (!$this->authService->isVerified($user)) {
+            if (!$request->expectsJson()) {
+                return redirect()->route('home')->with('error', 'Email not verified. Please verify your email.');
+            }
             return sendResponse(false, 'Email not verified. Please verify your email.', null, Response::HTTP_UNAUTHORIZED);
         }
 

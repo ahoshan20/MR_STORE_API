@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\VerifiedUserMiddleware;
 use Illuminate\Foundation\Application;
@@ -30,10 +31,11 @@ return Application::configure(basePath: dirname(__DIR__))
          $middleware->api(prepend: [
             HandleCors::class,
         ]);
-        $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO);
+        // $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO);
         $middleware->alias([
             'auth' => Authenticate::class,
             'verified-user' => VerifiedUserMiddleware::class,
+            'admin' => AdminMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
