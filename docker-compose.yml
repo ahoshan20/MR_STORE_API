@@ -34,7 +34,7 @@ services:
     image: mysql:8.0
     container_name: mysql
     ports:
-      - "3308:3306"               # Expose MySQL on host port 3308 (your existing local port)
+      - "3309:3306"               # Expose MySQL on host port 3308 (your existing local port)
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mr_store
