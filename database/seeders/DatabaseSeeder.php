@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AddressSeeder::class,
             TodoSeeder::class,
+            TagSeeder::class
         ]);
     }
 }

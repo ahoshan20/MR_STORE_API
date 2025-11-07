@@ -91,6 +91,16 @@ class User extends Authenticatable implements OAuthenticatable, MustVerifyEmail
         return $this->morphOne(Address::class, 'user');
     }
 
+
+    // ########## Scopes ##########
+    public function tags()
+    {
+        return $this->belongsToMany(\App\Models\Tag::class, 'user_tags')
+            ->withTimestamps()
+            ->withPivot('assigned_at');
+    }
+
+
     public const ADMIN = 1;
     public const NOT_ADMIN = 0;
 
