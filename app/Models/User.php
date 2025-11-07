@@ -84,6 +84,13 @@ class User extends Authenticatable implements OAuthenticatable, MustVerifyEmail
         'last_synced_at_formatted',
     ];
 
+
+    // ################ Relations ################
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'user');
+    }
+
     public const ADMIN = 1;
     public const NOT_ADMIN = 0;
 

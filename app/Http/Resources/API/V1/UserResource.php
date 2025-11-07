@@ -24,6 +24,10 @@ class UserResource extends JsonResource
             'last_synced_at' => $this->last_synced_at_formatted,
             'created_at' => $this->created_at_formatted,
             'updated_at' => $this->updated_at_formatted,
+
+            'address' => $this->whenLoaded('address', function () {
+                return new AddressResource($this->address);
+            }),
         ];
     }
 }

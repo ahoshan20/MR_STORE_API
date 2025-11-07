@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 function sendResponse($status, $message, $data = null, $statusCode = 200, $additional = null)
@@ -32,4 +33,13 @@ function sendResponse($status, $message, $data = null, $statusCode = 200, $addit
     }
 
     return response()->json($responseData, $statusCode);
+}
+
+function timeFormat($time)
+{
+    return date(('d M, Y H:i A'), strtotime($time));
+}
+function timeFormatHuman($time)
+{
+    return Carbon::parse($time)->diffForHumans();
 }

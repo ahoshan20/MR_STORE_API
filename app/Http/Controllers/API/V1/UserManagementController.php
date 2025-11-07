@@ -42,7 +42,7 @@ class UserManagementController extends Controller
             if ($user->is_admin == User::NOT_ADMIN) {
                 return response()->json(["message" => "Unauthorized access."], Response::HTTP_FORBIDDEN);
             }
-            $users = User::where('is_admin', false)->paginate(10);
+            $users = User::where('is_admin', false)->with('address')->paginate(10);
             return sendResponse(true, 'Users retrieved successfully.', new UserCollection($users), Response::HTTP_OK);
         } catch (Throwable $e) {
             Log::error('Get Users Error: ' . $e->getMessage());
