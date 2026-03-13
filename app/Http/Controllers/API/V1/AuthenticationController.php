@@ -9,7 +9,7 @@ use App\Http\Requests\API\V1\Auth\OtpResentRequest;
 use App\Http\Requests\API\V1\Auth\OtpVerifyRequest;
 use App\Http\Requests\API\V1\Auth\RegisterRequest;
 use App\Http\Requests\API\V1\Auth\ResetPasswordRequest;
-use App\Http\Resources\Api\V1\UserResource;
+use App\Http\Resources\API\V1\UserResource;
 use App\Models\User;
 use App\Services\Auth\AuthenticationService;
 use App\Services\UserService;
